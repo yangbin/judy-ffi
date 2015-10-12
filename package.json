@@ -1,0 +1,27 @@
+{
+  "name": "judy-ffi",
+  "version": "0.0.1",
+  "description": "Judy Arrays via FFI",
+  "main": "lib/judy.js",
+  "scripts": {
+    "test": "node test/test_judy.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yangbin/judy-ffi.git"
+  },
+  "keywords": [
+    "judy",
+    "arrays"
+  ],
+  "author": "Kwok Yang Bin <yangbin@zopim.com> (http://github.com/zopim/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yangbin/judy-ffi/issues"
+  },
+  "homepage": "https://github.com/yangbin/judy-ffi",
+  "dependencies": {
+    "ffi": "^2.0.0",
+    "ref": "^1.2.0"
+  }
+}
