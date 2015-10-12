@@ -12,3 +12,4 @@ j.put('cow', 'cow');
 assert.equal(j.get('moocow'), 42);
 assert.equal(j.get('moo'),    'moo');
 assert.equal(j.get('cow'),    'cow');
+assert.strictEqual(j.get('blank'), undefined);
