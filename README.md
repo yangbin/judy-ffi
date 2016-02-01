@@ -31,10 +31,10 @@ j.forEach(function(k,v) {
 // A bird goes coo
 // A cow goes moo
 
-j.deleteAll('c');	// [ 'cow' ]
+j.delete_all('c');	// [ 'cow' ]
 j.find();			// [ {'bird': 'coo'} ]
 
-j.deleteAll();		// [ 'bird' ]
+j.delete_all();		// [ 'bird' ]
 j.find();			// []
 ```
 
@@ -53,7 +53,7 @@ API
   * <a href="#judyputkey-value">`Judy#put()`</a>
   * <a href="#judygetkey">`Judy#get()`</a>
   * <a href="#judydeletekey">`Judy#delete()`</a>
-  * <a href="#judydeleteallprefix-maxkey">`Judy#deleteAll()`</a>
+  * <a href="#judydeleteallprefix-maxkey">`Judy#delete_all()`</a>
   * <a href="#judyfindprefix-maxkey">`Judy#find()`</a>
   * <a href="#judyforeachprefix-maxkey-cb">`Judy#forEach()`</a>
 
@@ -78,8 +78,8 @@ API
 `delete()` to delete an entry from Judy array.
 
 ---
-### Judy#deleteAll(prefix, maxKey)
-`deleteAll()` to delete all keys starting with `prefix` and less than `maxKey`
+### Judy#delete_all(prefix, maxKey)
+`delete_all()` to delete all keys starting with `prefix` and less than `maxKey`
 
 ---
 ### Judy#find(prefix, maxKey)

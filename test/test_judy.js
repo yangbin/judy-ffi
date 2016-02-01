@@ -59,7 +59,7 @@ var Judy = require('..');
 	assert.deepEqual(j.find(), [{'2':'2'},{'3':'3'}]);
 })();
 
-// test deleteAll
+// test delete_all
 (function() {
 	var j = new Judy();
 	for (var i = 0; i < 5; i++) {
@@ -67,19 +67,19 @@ var Judy = require('..');
 	}
 	j.put('40', 40);
 	// delete invaild index
-	assert.deepEqual(j.deleteAll('5'), []);
+	assert.deepEqual(j.delete_all('5'), []);
 	assert.deepEqual(j.find(), [{'0':'0'},{'1':'1'},{'2':'2'},{'3':'3'},{'4':'4'}, {'40':'40'}]);
 
 	// delete range
-	assert.deepEqual(j.deleteAll('1','3'), ['1','2']);
+	assert.deepEqual(j.delete_all('1','3'), ['1','2']);
 	assert.deepEqual(j.find(), [{'0':'0'},{'3':'3'},{'4':'4'}, {'40':'40'}]);
 
 	// delete multiple matches
-	assert.deepEqual(j.deleteAll('4'), ['4','40']);
+	assert.deepEqual(j.delete_all('4'), ['4','40']);
 	assert.deepEqual(j.find(), [{'0':'0'},{'3':'3'}]);
 
 	// no-arg deletes everything
-	assert.deepEqual(j.deleteAll(), ['0','3']);
+	assert.deepEqual(j.delete_all(), ['0','3']);
 	assert.deepEqual(j.find(), []);
 })();
 
