@@ -15,6 +15,27 @@ var j = new Judy();
 j.put('cow', 'moo');
 
 console.log('A cow goes', j.get('cow')); // A cow goes moo
+
+j.put('bird', 'coo');
+
+j.size();			// 2
+
+j.find();			// [ {'bird': 'coo'}, {'cow': 'moo'} ]
+j.find('b');		// [ {'bird': 'coo'} ]
+j.find('c');		// [ {'cow': 'moo'} ]
+j.find('b', 'c');	// [ {'bird': 'coo'} ]
+
+j.forEach(function(k,v) {
+	console.log('A %s goes %s', k, v);
+});
+// A bird goes coo
+// A cow goes moo
+
+j.deleteAll('c');
+j.find();			// [ {'bird': 'coo'} ]
+
+j.deleteAll();
+j.find();			// []
 ```
 
 Requirements
@@ -28,12 +49,21 @@ API
 ---
 
   * <a href="#judy">`Judy()`</a>
+  * <a href="#judysize">`Judy#size()`</a>
   * <a href="#judyputkey-value">`Judy#put()`</a>
   * <a href="#judygetkey">`Judy#get()`</a>
+  * <a href="#judydeletekey">`Judy#delete()`</a>
+  * <a href="#judydeleteallprefix-maxkey">`Judy#deleteAll()`</a>
+  * <a href="#judyfindprefix-maxkey">`Judy#find()`</a>
+  * <a href="#judyforeachprefix-maxkey-cb">`Judy#forEach()`</a>
 
 ---
 ### Judy()
 `new Judy()` returns a new Judy Array instance.
+
+---
+### Judy#size()
+`size()` to get number of entries.
 
 ---
 ### Judy#put(key, value)
@@ -42,3 +72,19 @@ API
 ---
 ### Judy#get(key)
 `get()` to retrieve entries from Judy array.
+
+---
+### Judy#delete(key)
+`delete()` to delete an entry from Judy array.
+
+---
+### Judy#deleteAll(prefix, maxKey)
+`deleteAll()` to delete all keys starting with `prefix` and less than `maxKey`
+
+---
+### Judy#find(prefix, maxKey)
+`find()` to search for all entries with keys starting with `prefix` and less than `maxKey`
+
+---
+### Judy#forEach(prefix, maxKey, cb)
+`forEach()` to iterate through entries with keys starting with `prefix` and less than `maxKey`. The callback is invoked with the key and value of each matched entry.

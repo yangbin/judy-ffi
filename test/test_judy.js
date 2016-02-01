@@ -17,7 +17,7 @@ var Judy = require('..');
 	assert.strictEqual(j.get('blank'), undefined);
 })();
 
-// test findAll
+// test find
 (function() {
 	var j = new Judy();
 	for (var i = 0; i < 5; i++) {
@@ -25,15 +25,15 @@ var Judy = require('..');
 	}
 	j.put('40', 40);
 	// no-arg matches all
-	assert.deepEqual(j.findAll(), [{'0':'0'},{'1':'1'},{'2':'2'},{'3':'3'},{'4':'4'}, {'40':'40'}]);
+	assert.deepEqual(j.find(), [{'0':'0'},{'1':'1'},{'2':'2'},{'3':'3'},{'4':'4'}, {'40':'40'}]);
 	// empty prefix also matches all
-	assert.deepEqual(j.findAll(''), [{'0':'0'},{'1':'1'},{'2':'2'},{'3':'3'},{'4':'4'}, {'40':'40'}]);
+	assert.deepEqual(j.find(''), [{'0':'0'},{'1':'1'},{'2':'2'},{'3':'3'},{'4':'4'}, {'40':'40'}]);
 	// single match
-	assert.deepEqual(j.findAll('0'), [{'0':'0'}]);
+	assert.deepEqual(j.find('0'), [{'0':'0'}]);
 	// multiple matches
-	assert.deepEqual(j.findAll('4'), [{'4':'4'}, {'40':'40'}]);
+	assert.deepEqual(j.find('4'), [{'4':'4'}, {'40':'40'}]);
 	// range
-	assert.deepEqual(j.findAll('1','3'), [{'1':'1'},{'2':'2'}]);
+	assert.deepEqual(j.find('1','3'), [{'1':'1'},{'2':'2'}]);
 })();
 
 // test delete
@@ -44,19 +44,19 @@ var Judy = require('..');
 	}
 	// delete invalid key
 	assert.equal(j.delete('5'), 0);
-	assert.deepEqual(j.findAll(), [{'0':'0'},{'1':'1'},{'2':'2'},{'3':'3'},{'4':'4'}]);
+	assert.deepEqual(j.find(), [{'0':'0'},{'1':'1'},{'2':'2'},{'3':'3'},{'4':'4'}]);
 
 	// delete middle
 	assert.equal(j.delete('1'), 1);
-	assert.deepEqual(j.findAll(), [{'0':'0'},{'2':'2'},{'3':'3'},{'4':'4'}]);
+	assert.deepEqual(j.find(), [{'0':'0'},{'2':'2'},{'3':'3'},{'4':'4'}]);
 
 	// delete front
 	assert.equal(j.delete('0'), 1);
-	assert.deepEqual(j.findAll(), [{'2':'2'},{'3':'3'},{'4':'4'}]);
+	assert.deepEqual(j.find(), [{'2':'2'},{'3':'3'},{'4':'4'}]);
 
 	// delete end
 	assert.equal(j.delete('4'), 1);
-	assert.deepEqual(j.findAll(), [{'2':'2'},{'3':'3'}]);
+	assert.deepEqual(j.find(), [{'2':'2'},{'3':'3'}]);
 })();
 
 // test deleteAll
@@ -68,19 +68,19 @@ var Judy = require('..');
 	j.put('40', 40);
 	// delete invaild index
 	assert.deepEqual(j.deleteAll('5'), []);
-	assert.deepEqual(j.findAll(), [{'0':'0'},{'1':'1'},{'2':'2'},{'3':'3'},{'4':'4'}, {'40':'40'}]);
+	assert.deepEqual(j.find(), [{'0':'0'},{'1':'1'},{'2':'2'},{'3':'3'},{'4':'4'}, {'40':'40'}]);
 
 	// delete range
 	assert.deepEqual(j.deleteAll('1','3'), ['1','2']);
-	assert.deepEqual(j.findAll(), [{'0':'0'},{'3':'3'},{'4':'4'}, {'40':'40'}]);
+	assert.deepEqual(j.find(), [{'0':'0'},{'3':'3'},{'4':'4'}, {'40':'40'}]);
 
 	// delete multiple matches
 	assert.deepEqual(j.deleteAll('4'), ['4','40']);
-	assert.deepEqual(j.findAll(), [{'0':'0'},{'3':'3'}]);
+	assert.deepEqual(j.find(), [{'0':'0'},{'3':'3'}]);
 
 	// no-arg deletes everything
 	assert.deepEqual(j.deleteAll(), ['0','3']);
-	assert.deepEqual(j.findAll(), []);
+	assert.deepEqual(j.find(), []);
 })();
 
 // test forEach
