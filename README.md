@@ -31,10 +31,10 @@ j.forEach(function(k,v) {
 // A bird goes coo
 // A cow goes moo
 
-j.deleteAll('c');
+j.deleteAll('c');	// [ 'cow' ]
 j.find();			// [ {'bird': 'coo'} ]
 
-j.deleteAll();
+j.deleteAll();		// [ 'bird' ]
 j.find();			// []
 ```
 
